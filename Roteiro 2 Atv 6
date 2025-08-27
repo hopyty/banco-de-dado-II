@@ -1,0 +1,14 @@
+a)	Em qual cenário o HASH realmente ganha do B-Tree?
+O índice hash só ganha em casos muito específicos, quando faz comparações de igualdade e em colunas de alta cardinalidade 
+
+b)	O que acontece com consultas como LIKE 'usuario_%' → Hash index pode ser usado? 
+Não O índice hash só funciona para igualdade
+
+c)	Se eu filtrar WHERE email IN ('usuario_10@teste.com', 'usuario_20@teste.com'), o PostgreSQL usará o índice HASH? 
+Teoricamente, sim, porque cada condição do IN é uma igualdade. Mas na prática, o PostgreSQL tende a usar B-Tree, então, mesmo nesse caso, dificilmente o hash será escolhido (a menos que seja forçado).
+
+d)	Qual índice ocupa mais espaço em disco: B-Tree ou HASH? Use: 
+O índice HASH costuma ocupar mais espaço porque ele mantém buckets com ponteiros. Já o B-Tree é mais eficiente no armazenamento, porque organiza os dados em páginas ordenadas.
+
+e)	Se eu apagar 90% das linhas da tabela, como isso afeta a utilidade do índice hash?
+Índices hash não têm boa gestão de dead tuples (linhas apagadas). Mesmo depois de deletar, os buckets continuam ocupando espaço, e o índice pode ficar “inchado”. Isso prejudica a performance, porque o PostgreSQL ainda precisa percorrer buckets quase vazios. Para recuperar, é necessário fazer um REINDEX.
