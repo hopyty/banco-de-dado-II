@@ -1,10 +1,7 @@
 Observações para anotar
 
-⚠️ Problema: Write Skew (desvio de escrita)
+Problema: Write Skew (desvio de escrita).
 
-🔓 READ COMMITTED:
-Regra de negócio foi quebrada (0 médicos em plantão).
+Em READ COMMITTED: regra de negócio foi quebrada (0 médicos em plantão).
 
-🔒 SERIALIZABLE:
-PostgreSQL aborta uma das transações automaticamente, preservando a regra.
-
+Em SERIALIZABLE: PostgreSQL aborta uma das transações automaticamente, preservando a regra.
