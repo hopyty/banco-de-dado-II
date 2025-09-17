@@ -1,0 +1,7 @@
+Observações para anotar
+
+Problema: Write Skew (desvio de escrita).
+
+Em READ COMMITTED: regra de negócio foi quebrada (0 médicos em plantão).
+
+Em SERIALIZABLE: PostgreSQL aborta uma das transações automaticamente, preservando a regra.
